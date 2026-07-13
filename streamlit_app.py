@@ -93,7 +93,7 @@ st.caption(
     "-10부터 10까지의 범위에서 그래프의 모양을 나타냈습니다."
 )
 
-    st.subheader("좌표 확인")
+st.subheader("좌표 확인")
 
     for x, y in zip(x_values, correct_answers):
         st.write(f"({x}, {y})")
