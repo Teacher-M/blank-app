@@ -65,17 +65,33 @@ if st.button("정답과 그래프 확인하기"):
 
     st.subheader("📊 이차함수 그래프")
 
-    # Streamlit 기본 그래프로 나타내기
-    graph_data = {
-        "x": x_values,
-        "y": correct_answers
-    }
+    # 그래프에 사용할 촘촘한 실수 값
+graph_x_values = []
 
-    st.line_chart(
-        graph_data,
-        x="x",
-        y="y"
-    )
+for i in range(-100, 101):
+    graph_x_values.append(i / 10)
+
+graph_y_values = []
+
+for x in graph_x_values:
+    y = a * x**2 + b * x + c
+    graph_y_values.append(y)
+
+graph_data = {
+    "x": graph_x_values,
+    "y": graph_y_values
+}
+
+st.line_chart(
+    graph_data,
+    x="x",
+    y="y"
+)
+
+st.caption(
+    "실수 전체를 화면에 모두 나타낼 수 없으므로 "
+    "-10부터 10까지의 범위에서 그래프의 모양을 나타냈습니다."
+)
 
     st.subheader("좌표 확인")
 
