@@ -4,27 +4,22 @@ st.title("📈 이차함수 그래프 그리기")
 
 st.write("함수의 계수를 정하고, 표를 완성한 뒤 그래프를 확인해 보세요.")
 
-# 계수 정하기
 a = st.slider("a의 값", -3, 3, 1)
 b = st.slider("b의 값", -5, 5, 0)
 c = st.slider("c의 값", -5, 5, 0)
 
 if a == 0:
-    st.warning("a가 0이면 이차함수가 아닙니다. a를 0이 아닌 값으로 바꿔 주세요.")
+    st.warning("a가 0이면 이차함수가 아닙니다.")
     st.stop()
 
 st.subheader("현재 이차함수")
-
 st.latex(f"y = {a}x^2 + {b}x + {c}")
 
 st.write("각 x값에 알맞은 y값을 계산하여 입력하세요.")
 
-# 사용할 x값
-x_values = list(range(-5, 6))
-
+x_values = [-3, -2, -1, 0, 1, 2, 3]
 student_answers = []
 
-# 학생이 y값 입력
 for x in x_values:
     answer = st.number_input(
         f"x = {x}일 때 y의 값",
@@ -34,9 +29,7 @@ for x in x_values:
     )
     student_answers.append(answer)
 
-# 확인 버튼
 if st.button("정답과 그래프 확인하기"):
-
     correct_answers = []
 
     for x in x_values:
@@ -65,35 +58,33 @@ if st.button("정답과 그래프 확인하기"):
 
     st.subheader("📊 이차함수 그래프")
 
-    # 그래프에 사용할 촘촘한 실수 값
-graph_x_values = []
+    graph_x_values = []
+    graph_y_values = []
 
-for i in range(-100, 101):
-    graph_x_values.append(i / 10)
+    for i in range(-100, 101):
+        x = i / 10
+        y = a * x**2 + b * x + c
 
-graph_y_values = []
+        graph_x_values.append(x)
+        graph_y_values.append(y)
 
-for x in graph_x_values:
-    y = a * x**2 + b * x + c
-    graph_y_values.append(y)
+    graph_data = {
+        "x": graph_x_values,
+        "y": graph_y_values
+    }
 
-graph_data = {
-    "x": graph_x_values,
-    "y": graph_y_values
-}
+    st.line_chart(
+        graph_data,
+        x="x",
+        y="y"
+    )
 
-st.line_chart(
-    graph_data,
-    x="x",
-    y="y"
-)
+    st.caption(
+        "실수 전체를 화면에 모두 나타낼 수 없으므로 "
+        "-10부터 10까지의 범위에서 그래프의 모양을 나타냈습니다."
+    )
 
-st.caption(
-    "실수 전체를 화면에 모두 나타낼 수 없으므로 "
-    "-10부터 10까지의 범위에서 그래프의 모양을 나타냈습니다."
-)
-
-st.subheader("좌표 확인")
+    st.subheader("좌표 확인")
 
     for x, y in zip(x_values, correct_answers):
         st.write(f"({x}, {y})")
@@ -106,6 +97,6 @@ st.subheader("좌표 확인")
 st.divider()
 
 st.write(
-    "💡 활동 방법: 먼저 활동지나 공책에 좌표를 찍어 "
-    "그래프를 그린 뒤, 웹 앱의 그래프와 비교해 보세요."
+    "💡 먼저 공책에 좌표를 찍어 그래프를 그린 뒤, "
+    "웹 앱의 그래프와 비교해 보세요."
 )
