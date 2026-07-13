@@ -20,7 +20,7 @@ st.latex(f"y = {a}x^2 + {b}x + {c}")
 st.write("각 x값에 알맞은 y값을 계산하여 입력하세요.")
 
 # 사용할 x값
-x_values = [-3, -2, -1, 0, 1, 2, 3]
+x_values = list(range(-5, 6))
 
 student_answers = []
 
